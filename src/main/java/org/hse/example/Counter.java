@@ -1,6 +1,10 @@
 package org.hse.example;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 
 import java.util.function.Function;
 import java.util.function.IntFunction;
@@ -27,15 +31,13 @@ public interface Counter {
 /**
  * Реализация {@link Counter}
  */
+@AllArgsConstructor
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class CounterImpl implements Counter {
-    private final int length;
 
     public CounterImpl(int length) {
         this.length = length;
-    }
-
-    public CounterImpl() {
-        this.length = DEFAULT_LENGTH;
     }
 
     protected Lucky getInstance(final int length, final int number) {
